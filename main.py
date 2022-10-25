@@ -1,5 +1,5 @@
 """
-Link the seperate blog_get router created from blog_get 
+Link the seperate blog_get router created from blog_get and blog_post
 under the folder "routers"
 """
 from fastapi import FastAPI, status
@@ -8,14 +8,15 @@ from typing import List
 import uvicorn
 import json
 from routers import blog_get # "router" is the file name
-#from router import blog_post
+from routers import blog_post
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 
 app = FastAPI()
 app.include_router(blog_get.router)
-#app.include_router(blog_post.router)
+app.include_router(blog_post.router)
+
 @app.get('/hello')
 def index():
     return {'message': 'Hello world!'}
